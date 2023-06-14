@@ -32,7 +32,7 @@ jobs:
 
       - name: Test with pytest
         run: |
-          if [ -d tests ] || [ -d test ]; then FLASK_ENV=${{ secrets.FLASK_ENV }} python -m pytest; fi
+          if [ -d tests ] || [ -d test ]; then FLASK_DEBUG=${{ secrets.FLASK_DEBUG }} python -m pytest; fi
 
   Test-Local:
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
 
       - name: Test application
         run: |
-          FLASK_ENV=${{ secrets.FLASK_ENV }} python aop.py &
+          FLASK_DEBUG=${{ secrets.FLASK_DEBUG }} python aop.py &
           sleep 5
           curl http://127.0.0.1:5000/ | grep "template api"
 
